@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'crispy_forms',
+    'user_account.apps.UserAccountConfig',
 ]
 
 MIDDLEWARE = [
@@ -93,27 +94,27 @@ WSGI_APPLICATION = 'picbook.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 # DATABASES = {
-#         # 'default': {
-#         #     'ENGINE': 'django.db.backends.sqlite3',
-#         #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#         # },
-#         'default': {
-#             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#             'NAME': 'dnc_db',
-#             'USER': 'dnc_db_user',
-#             'PASSWORD': 'dncdbpass',
-#             'HOST': 'localhost',
-#             'PORT': '5432',
-#         }
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 #     }
+# }
+
+DATABASES = {
+        # 'default': {
+        #     'ENGINE': 'django.db.backends.sqlite3',
+        #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # },
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'picbook_db',
+            'USER': 'picbook_user',
+            'PASSWORD': 'picbookpass',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
 
 
 # Password validation
