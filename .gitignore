@@ -1,2 +1,6 @@
 .idea/*
 */__pycache__/*
+.env
+create_db.sql
+picbook/local_settings.py
+db.sqlite3
