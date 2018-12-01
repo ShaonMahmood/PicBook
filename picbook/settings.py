@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'crispy_forms',
     'user_account.apps.UserAccountConfig',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -120,6 +121,7 @@ DATABASES = {
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'user_account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
 ]
 
 
@@ -180,12 +182,12 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Local Settings Configuration
 
 try:
-   from local_settings import *
+    print("Outside")
+    from .local_settings import *
 except ImportError:
     pass
     # raise Exception("A local_settings.py file is required to run this project")
