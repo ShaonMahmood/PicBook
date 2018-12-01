@@ -20,7 +20,7 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^user-account/', include('user_account.urls', namespace='user-account')),
+    url(r'^user-account/', include('user_account.urls', namespace='user_account')),
 ]
 
 if settings.DEBUG:

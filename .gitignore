@@ -4,3 +4,6 @@
 create_db.sql
 picbook/local_settings.py
 db.sqlite3
+*/__pycache__/*
+apps/user_account/__pycache__/*
+apps/user_account/migrations/__pycache__/*

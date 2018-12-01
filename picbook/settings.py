@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
+    # 'crispy_forms',
     'user_account.apps.UserAccountConfig',
 ]
 
@@ -73,7 +73,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates')
+            (os.path.join(BASE_DIR, 'templates'))
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -150,11 +150,20 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Login Url and Redirect Url
+LOGIN_REDIRECT_URL = 'user_account:dashboard' # setting next parameter
+LOGIN_URL = 'user_account:login' # login_required decorator use it
+LOGOUT_URL = 'user_account:logout'
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+]
 
 # Media Storage
 
@@ -163,7 +172,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Crispy form template
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+# CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Local Settings Configuration
 
