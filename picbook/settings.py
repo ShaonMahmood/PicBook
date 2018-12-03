@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     # 'crispy_forms',
     'user_account.apps.UserAccountConfig',
     'images.apps.ImagesConfig',
+    'actions.apps.ActionsConfig',
     'social_django',
     'sorl.thumbnail',
 ]
