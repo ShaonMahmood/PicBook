@@ -6,6 +6,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from .models import Image
 from .forms import ImageCreateForm
+from apps.common.decorators import ajax_required
 
 @login_required
 def image_create(request):
@@ -42,7 +43,7 @@ def image_detail(request, id, slug):
 
 
 
-
+@ajax_required
 @login_required
 @require_POST
 def image_like(request):
