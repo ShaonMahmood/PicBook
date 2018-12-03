@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'crispy_forms',
     'user_account.apps.UserAccountConfig',
+    'images.apps.ImagesConfig',
     'social_django',
 ]
 

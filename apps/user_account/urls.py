@@ -2,6 +2,8 @@ from django.conf.urls import url, include
 from django.contrib.auth.urls import views as auth_views
 from . import views
 
+app_name = 'user_account'
+
 urlpatterns = [
     # post views
     # Namespace : user_account
