@@ -3,6 +3,7 @@ from django.utils.text import slugify
 from django.conf import settings
 from django.urls import reverse
 
+
 class Image(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
                              related_name='images_created',

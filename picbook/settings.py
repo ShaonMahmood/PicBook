@@ -14,6 +14,8 @@ import os
 import sys
 import environ
 
+from django.urls import reverse_lazy
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -125,6 +127,11 @@ AUTHENTICATION_BACKENDS = [
     'user_account.authentication.EmailAuthBackend',
     'social_core.backends.facebook.FacebookOAuth2',
 ]
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('user_account:user_detail',
+                                        args=[u.username])
+}
 
 
 # Password validation
