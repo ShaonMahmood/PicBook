@@ -39,7 +39,7 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 SECRET_KEY = '3+3=qnrrk3dx!i$rf!9ne1bj%@dyzkn^el94)eqroaa_5y@gbu'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
     'user_account.apps.UserAccountConfig',
     'images.apps.ImagesConfig',
     'social_django',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
