@@ -5,4 +5,5 @@ app_name = 'images'
 
 urlpatterns = [
     url(r'^create/', views.image_create, name='create'),
+    url(r'^detail/(?P<id>[0-9]+)/(?P<slug>[-\w]+)/',views.image_detail,name='detail'),
 ]
