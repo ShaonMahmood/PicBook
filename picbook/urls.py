@@ -22,8 +22,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^user-account/', include('user_account.urls', namespace='user_account')),
     url(r'^images/', include('images.urls', namespace='images')),
-    url('social-auth/',
-            include('social_django.urls', namespace='social')),
+    # url('social-auth/',
+    #         include('social_django.urls', namespace='social')),
 ]
 
 if settings.DEBUG:

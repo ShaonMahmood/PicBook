@@ -59,7 +59,7 @@ INSTALLED_APPS = [
     'user_account.apps.UserAccountConfig',
     'images.apps.ImagesConfig',
     'actions.apps.ActionsConfig',
-    'social_django',
+    # 'social_django',
     'sorl.thumbnail',
 ]
 
@@ -131,7 +131,7 @@ REDIS_DB = 0
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'user_account.authentication.EmailAuthBackend',
-    'social_core.backends.facebook.FacebookOAuth2',
+    # 'social_core.backends.facebook.FacebookOAuth2',
 ]
 
 ABSOLUTE_URL_OVERRIDES = {
@@ -204,5 +204,5 @@ try:
     print("Outside")
     from .local_settings import *
 except ImportError:
-    pass
-    # raise Exception("A local_settings.py file is required to run this project")
+
+    raise Exception("A local_settings.py file is required to run this project")
