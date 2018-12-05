@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from django.core.paginator import Paginator, EmptyPage, \
                                   PageNotAnInteger
 from .models import Image
-from .forms import ImageCreateForm
+from .forms import ImageCreateForm,ImageForm
 from apps.common.decorators import ajax_required
 from actions.utils import create_action
 import redis
@@ -46,6 +46,29 @@ def image_create(request):
                   'images/image/create.html',
                       {'section': 'images',
                        'form': form})
+
+
+@login_required
+def image_upload(request):
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            cd = form.cleaned_data
+            print("Upload Form : ",cd['image'])
+            new_item = form.save(commit=False)
+            new_item.user = request.user
+            new_item.save()
+            new_item.url = new_item.image.url
+            new_item.save()
+            messages.success(request, 'Image uploaded successfully')
+            return redirect(new_item.get_absolute_url())
+    else:
+        form = ImageForm()
+    return render(request, 'images/image/upload_form.html', {
+        'section': 'images',
+        'form': form
+    })
+
 
 # image detail
 @login_required
@@ -130,3 +153,5 @@ def image_ranking(request):
                   'images/image/ranking.html',
                   {'section': 'images',
                    'most_viewed': most_viewed})
+
+

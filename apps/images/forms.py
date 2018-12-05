@@ -38,3 +38,9 @@ class ImageCreateForm(forms.ModelForm):
         if commit:
             image.save()
         return image
+
+
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = Image
+        fields = ('title','image','description')

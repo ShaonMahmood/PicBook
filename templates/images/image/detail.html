@@ -48,10 +48,12 @@
             {% endfor %}
         </div>
     {% endwith %}
-
+{% if delete_permission %}
     <a href="{% url 'images:delete' image.id image.slug %}">
         <button class="button">Delete</button>
     </a>
+
+    {% endif %}
 {% endblock %}
 
 {% block domready %}
