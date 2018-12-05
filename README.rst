@@ -1,48 +1,56 @@
-Section Header
-==============
+PicBook Documentation
+=====================
+Welcome to Picbook. PicBook is a simple photo uploading website where users can upload, delete and view photos of other users.
 
-**emphasis (bold/strong)**
+Project Development requirements
+--------------------------------
+#) A linux machine, For example: Ubuntu 16.04 or 18.04 LTS
 
-*italics*
+#) Python 3.5 or above, Linux distributions have it already
 
-Simple link: https://twoscoopspress.com
-Fancier Link: `Two Scoops of Django`_
+#) PostgreSQL setup, Follow Link: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04
 
-.. _Two Scoops of Django: https://twoscoopspress.com
+#) Redis server setup, Follow Link: https://www.digitalocean.com/community/tutorials/how-to-install-and-use-redis
 
-Subsection Header
------------------
+#) Install git, Follow Link: https://www.liquidweb.com/kb/install-git-ubuntu-16-04-lts/
 
-#) An enumerated list item
+#) Setup a Virtual environment, Instructions: https://linoxide.com/linux-how-to/setup-python-virtual-environment-ubuntu/
 
-#) Second item
+Project SetUp
+-------------
+* Clone the project directory to your local machine using git clone command::
 
-* First bullet
+    git clone https://github.com/ShaonMahmood/PicBook.git
+* Create a virtual environment::
 
-* Second bullet
+    python3 -m venv picbook_env
+    source picbook_env/bin/activate
+* Install requirements::
 
- * Indented Bullet
+    cd <your_cloned directory>/
+    pip install -r requirements/local.txt
+* Create a local_settings.py file inside your picbook directory::
 
- * Note carriage return and indents
+    touch picbook/local_settings.py
+* A typical local_settings.py may contains the following settings::
 
-Literal code block::
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    SOCIAL_AUTH_FACEBOOK_KEY = '' # Facebook App ID
+    SOCIAL_AUTH_FACEBOOK_SECRET = '' # Facebook App Secret
+    SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+    THUMBNAIL_DEBUG = True
+    DEBUG = True
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = 'your_account@gmail.com'
+    EMAIL_HOST_PASSWORD = 'your_password'
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+* Migrate all the database files using migrate command::
 
-    def like():
-        print("I like Ice Cream")
-    for i in range(10):
-        like()
+    python manage.py migrate
+* Run the project::
 
-Python colored code block (requires pygments):
+    python manage.py runserver
 
-code-block:: python
-
-    # You need to "pip install pygments" to make this work.
-
-    for i in range(10):
-        like()
-
-JavaScript colored code block:
-
-code-block:: javascript
-
-    console.log("Don't use alert()");
+Project specific task
+---------------------
