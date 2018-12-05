@@ -10,3 +10,5 @@ apps/user_account/migrations/__pycache__/*
 apps/common/__pycache__/*
 apps/actions/__pycache__/*
 apps/actions/migrations/__pycache__/*
+apps/images/__pycache__/*
+media/

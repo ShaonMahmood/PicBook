@@ -48,6 +48,10 @@
             {% endfor %}
         </div>
     {% endwith %}
+
+    <a href="{% url 'images:delete' image.id image.slug %}">
+        <button class="button">Delete</button>
+    </a>
 {% endblock %}
 
 {% block domready %}

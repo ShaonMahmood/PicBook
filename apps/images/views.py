@@ -47,7 +47,8 @@ def image_create(request):
                       {'section': 'images',
                        'form': form})
 
-
+# image detail
+@login_required
 def image_detail(request, id, slug):
     image = get_object_or_404(Image, id=id, slug=slug)
     # increment total image views by 1
@@ -61,7 +62,13 @@ def image_detail(request, id, slug):
                    'total_views': total_views
                    })
 
-
+# delete single image
+@login_required
+def image_delete(request, id, slug):
+    image = get_object_or_404(Image, id=id, slug=slug)
+    image.delete()
+    messages.warning(request, 'Image deleted successfully')
+    return redirect('images:list')
 
 @ajax_required
 @login_required
