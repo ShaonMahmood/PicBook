@@ -1,6 +1,6 @@
 # Django Specific Imports
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -96,6 +96,7 @@ def edit(request):
             profile_form.save()
             messages.success(request, 'Profile updated ' \
                                       'successfully')
+            return redirect('user_account:user_detail', username=request.user.username)
         else:
             messages.error(request, 'Error updating your profile')
     else:
@@ -116,11 +117,14 @@ def user_list(request):
                   {'section': 'people',
                    'users': users})
 
+
 @login_required
 def user_detail(request, username):
+    print("In user detail: ",username)
     user = get_object_or_404(User,
                              username=username,
                              )
+    print("user name:", user.username)
     return render(request,
                   'user_account/user/detail.html',
                   {'section': 'people',

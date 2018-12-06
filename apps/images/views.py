@@ -21,6 +21,7 @@ r = redis.StrictRedis(host=settings.REDIS_HOST,
                       db=settings.REDIS_DB)
 
 
+# image creation by bookmarklet
 @login_required
 def image_create(request):
     if request.method == 'POST':
@@ -74,6 +75,10 @@ def image_upload(request):
 @login_required
 def image_detail(request, id, slug):
     image = get_object_or_404(Image, id=id, slug=slug)
+    delete_perm = False
+    if request.user.id == image.user.id:
+        delete_perm = True
+
     # increment total image views by 1
     total_views = r.incr('image:{}:views'.format(image.id))
     # increment image ranking by 1
@@ -82,7 +87,8 @@ def image_detail(request, id, slug):
                   'images/image/detail.html',
                   {'section': 'images',
                    'image': image,
-                   'total_views': total_views
+                   'total_views': total_views,
+                   'delete_permission':delete_perm
                    })
 
 # delete single image
@@ -93,6 +99,8 @@ def image_delete(request, id, slug):
     messages.warning(request, 'Image deleted successfully')
     return redirect('images:list')
 
+
+# image like option
 @ajax_required
 @login_required
 @require_POST
@@ -116,7 +124,7 @@ def image_like(request):
 @login_required
 def image_list(request):
     images = Image.objects.all()
-    paginator = Paginator(images, 8)
+    paginator = Paginator(images, 4)
     page = request.GET.get('page')
     try:
         images = paginator.page(page)
