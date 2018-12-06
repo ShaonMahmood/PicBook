@@ -70,8 +70,6 @@ def register(request):
                 user_form.cleaned_data['password'])
             # Save the User object
             new_user.save()
-            # Create the user profile
-            Profile.objects.create(user=new_user)
             create_action(new_user, 'has created an account')
 
             return render(request,
@@ -86,12 +84,11 @@ def register(request):
 
 @login_required
 def edit(request):
-    profile = Profile(user=request.user)
     if request.method == 'POST':
         user_form = UserEditForm(instance=request.user,
                                  data=request.POST)
         profile_form = ProfileEditForm(
-                                    instance=profile,
+                                    instance=request.user.profile,
                                     data=request.POST,
                                     files=request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
@@ -104,7 +101,7 @@ def edit(request):
     else:
         user_form = UserEditForm(instance=request.user)
         profile_form = ProfileEditForm(
-                                    instance=profile)
+                                    instance=request.user.profile)
     return render(request,
                   'user_account/edit.html',
                   {'user_form': user_form,
@@ -113,7 +110,7 @@ def edit(request):
 
 @login_required
 def user_list(request):
-    users = User.objects.filter(is_active=True)
+    users = User.objects.all().select_related('profile')
     return render(request,
                   'user_account/user/list.html',
                   {'section': 'people',
@@ -123,7 +120,7 @@ def user_list(request):
 def user_detail(request, username):
     user = get_object_or_404(User,
                              username=username,
-                             is_active=True)
+                             )
     return render(request,
                   'user_account/user/detail.html',
                   {'section': 'people',

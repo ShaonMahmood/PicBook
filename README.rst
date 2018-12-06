@@ -16,6 +16,8 @@ Project Development requirements
 
 #) Setup a Virtual environment, Instructions: https://linoxide.com/linux-how-to/setup-python-virtual-environment-ubuntu/
 
+#) Setup ngrok, Follow Instruction: https://ngrok.com/download
+
 Project SetUp
 -------------
 * Clone the project directory to your local machine using git clone command::
@@ -35,11 +37,9 @@ Project SetUp
 * A typical local_settings.py may contains the following settings::
 
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    SOCIAL_AUTH_FACEBOOK_KEY = '' # Facebook App ID
-    SOCIAL_AUTH_FACEBOOK_SECRET = '' # Facebook App Secret
-    SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
     THUMBNAIL_DEBUG = True
     DEBUG = True
+    DATABASE = {}
     EMAIL_HOST = 'smtp.gmail.com'
     EMAIL_HOST_USER = 'your_account@gmail.com'
     EMAIL_HOST_PASSWORD = 'your_password'
@@ -50,7 +50,20 @@ Project SetUp
     python manage.py migrate
 * Run the project::
 
-    python manage.py runserver
+    python manage.py runserver 8000
 
 Project specific task
 ---------------------
+A User can bookmark an image or can upload it locally. while uploading through
+bookmarklet some modifications should be done in local development,such as:
+
+* Run ngrok at the port 8000 keeping the project running::
+
+    ./ngrok http 8000
+* copy the https address and replace it with following lines::
+
+    src = "<https://592f3f52.ngrok.io>" # in templates/bookmarklet_launcher.js
+    site_url = '<https://592f3f52.ngrok.io/>' # in static/images/js/bookmarklet.js
+* visit the running project with that https address,for example::
+
+    https://592f3f52.ngrok.io/user-account

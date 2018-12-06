@@ -1,6 +1,6 @@
 (function () {
     var jquery_version = '3.3.1';
-    var site_url = 'https://25abfdd9.ngrok.io/';
+    var site_url = 'https://592f3f52.ngrok.io/';
     var static_url = site_url + 'static/';
     var min_width = 100;
     var min_height = 100;
@@ -11,7 +11,7 @@
         css.attr({
             rel: 'stylesheet',
             type: 'text/css',
-            href: static_url + 'css/bookmarklet.css?r=' + Math.floor(Math.random() * 99999999999999999999)
+            href: static_url + 'images/css/bookmarklet.css?r=' + Math.floor(Math.random() * 99999999999999999999)
         });
         jQuery('head').append(css);
 
